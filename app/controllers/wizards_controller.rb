@@ -1,13 +1,12 @@
 class WizardsController < ApplicationController
+  respond_to :html, :json
+
   # GET /wizards
   # GET /wizards.json
   def index
     @wizards = Wizard.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @wizards }
-    end
+    respond_with(@wizards)
   end
 
   # GET /wizards/1
@@ -15,10 +14,7 @@ class WizardsController < ApplicationController
   def show
     @wizard = Wizard.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @wizard }
-    end
+    respond_with(@wizard)
   end
 
   # GET /wizards/new
@@ -26,47 +22,31 @@ class WizardsController < ApplicationController
   def new
     @wizard = Wizard.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @wizard }
-    end
+    respond_with(@wizard)
   end
 
   # GET /wizards/1/edit
   def edit
     @wizard = Wizard.find(params[:id])
+
+    respond_with(@wizard)
   end
 
   # POST /wizards
   # POST /wizards.json
   def create
-    @wizard = Wizard.new(params[:wizard])
+    @wizard = Wizard.create(params[:wizard])
 
-    respond_to do |format|
-      if @wizard.save
-        format.html { redirect_to @wizard, notice: 'Wizard was successfully created.' }
-        format.json { render json: @wizard, status: :created, location: @wizard }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @wizard.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with(@wizard, notice: "Wizard was successfully created.")
   end
 
   # PUT /wizards/1
   # PUT /wizards/1.json
   def update
     @wizard = Wizard.find(params[:id])
+    @wizard.update_attributes(params[:wizard])
 
-    respond_to do |format|
-      if @wizard.update_attributes(params[:wizard])
-        format.html { redirect_to @wizard, notice: 'Wizard was successfully updated.' }
-        format.json { render json: @wizard, status: :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @wizard.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with(@wizard, notice: "Wizard was successfully updated.")
   end
 
   # DELETE /wizards/1
@@ -75,9 +55,6 @@ class WizardsController < ApplicationController
     @wizard = Wizard.find(params[:id])
     @wizard.destroy
 
-    respond_to do |format|
-      format.html { redirect_to wizards_url }
-      format.json { render json: @wizard, status: :ok }
-    end
+    respond_with(@wizard, notice: "Wizard was successfully deleted.")
   end
 end
