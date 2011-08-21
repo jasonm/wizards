@@ -1,25 +1,8 @@
-<h1>Listing wizards</h1>
+<div id="wizards"></div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Wiseness</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @wizards.each do |wizard| %>
-  <tr>
-    <td><%= wizard.name %></td>
-    <td><%= wizard.wiseness %></td>
-    <td><%= link_to 'Show', wizard %></td>
-    <td><%= link_to 'Edit', edit_wizard_path(wizard) %></td>
-    <td><%= link_to 'Destroy', wizard, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Wizard', new_wizard_path %>
+<script type="text/javascript">
+  $(function() {
+    window.router = new Wizards.Routers.WizardsRouter({wizards: <%= @wizards.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+</script>
