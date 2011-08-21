@@ -1,0 +1,25 @@
+<%= form_for(@wizard) do |f| %>
+  <% if @wizard.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wizard.errors.count, "error") %> prohibited this wizard from being saved:</h2>
+
+      <ul>
+      <% @wizard.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :wiseness %><br />
+    <%= f.number_field :wiseness %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
