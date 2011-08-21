@@ -61,7 +61,7 @@ class WizardsController < ApplicationController
     respond_to do |format|
       if @wizard.update_attributes(params[:wizard])
         format.html { redirect_to @wizard, notice: 'Wizard was successfully updated.' }
-        format.json { head :ok }
+        format.json { render json: @wizard, status: :ok }
       else
         format.html { render action: "edit" }
         format.json { render json: @wizard.errors, status: :unprocessable_entity }
@@ -77,7 +77,7 @@ class WizardsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to wizards_url }
-      format.json { head :ok }
+      format.json { render json: @wizard, status: :ok }
     end
   end
 end
