@@ -41,6 +41,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
+    ejs (1.0.0)
     erubis (2.7.0)
     execjs (1.2.4)
       multi_json (~> 1.0)
@@ -73,6 +74,10 @@ GEM
       activesupport (= 3.1.0.rc6)
       bundler (~> 1.0)
       railties (= 3.1.0.rc6)
+    rails-backbone (0.5.3)
+      coffee-script (~> 2.2.0)
+      ejs (~> 1.0.0)
+      rails (~> 3.1.0.rc5)
     railties (3.1.0.rc6)
       actionpack (= 3.1.0.rc6)
       activesupport (= 3.1.0.rc6)
@@ -111,6 +116,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.0.rc)
   jquery-rails
   rails (= 3.1.0.rc6)
+  rails-backbone
   sass-rails (~> 3.1.0.rc)
   sqlite3
   turn
