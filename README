@@ -6,7 +6,9 @@ The name is inspired by a game of Wisest Wizard at RailsCamp New England 2011.
 The application is scaffolded using https://github.com/codebrew/backbone-rails
 
 It uses Faye http://faye.jcoglan.com/ to broadcast model updates to clients.
-This notification is very early: it only notifies of update.
+
+This is work in progress, and has known bugs.  (E.g. the "create" event still
+is received by the originator, resulting in dupes on that client.)
 
 === Running in development
 
