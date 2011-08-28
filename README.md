@@ -1,4 +1,4 @@
-== Wizards!: A Backbone.js example application
+## Wizards!: A Backbone.js example application
 
 This is an example Backbone.js and Rails 3.1 application.
 The name is inspired by a game of Wisest Wizard at RailsCamp New England 2011.
@@ -10,7 +10,7 @@ It uses Faye http://faye.jcoglan.com/ to broadcast model updates to clients.
 This is work in progress, and has known bugs.  (E.g. the "create" event still
 is received by the originator, resulting in dupes on that client.)
 
-=== Running in development
+### Running in development
 
 You'll need to run a Faye server.  See Procfile for the command, or use
 Heroku's foreman gem: http://devcenter.heroku.com/articles/procfile
