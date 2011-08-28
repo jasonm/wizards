@@ -8,8 +8,8 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
-//= require_tree ./extensions
-//= require backbone_rails_sync
+//= require extensions/backbone.collection.idempotent
+//= require backbone_sync-rails/rails_faye_subscriber
 //= require backbone_datalink
 //= require backbone/wizards
 //= require_tree .

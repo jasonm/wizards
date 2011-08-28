@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'rails-backbone'
 
 gem 'sprockets', '=2.0.0.beta.13' # until new rails drops and fixes https://github.com/rails/rails/issues/2598
+gem 'backbone_sync-rails'
 
 
 # Gems used only for assets and not required

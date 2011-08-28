@@ -1,7 +1,7 @@
 class Wizards.Routers.WizardsRouter extends Backbone.Router
   initialize: (options) ->
     @wizards = new Wizards.Collections.WizardsCollection()
-    new FayeSync.Synchronizer(@wizards, channel: 'wizards')
+    new BackboneSync.RailsFayeSubscriber(@wizards, channel: 'wizards')
     @wizards.reset options.wizards
 
   routes:

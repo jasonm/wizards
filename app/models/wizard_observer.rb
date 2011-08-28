@@ -1,3 +1,3 @@
 class WizardObserver < ActiveRecord::Observer
-  include FayeModelSync::Observer
+  include BackboneSync::Rails::Faye::Observer
 end
