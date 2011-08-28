@@ -1,9 +1,0 @@
-Backbone.Collection.prototype.subscribeToFayeUpdates = (channelSegment) ->
-  self    = this
-  client  = new Faye.Client('<%= FAYE_SERVER %>/faye')
-  channel = "/sync/#{channelSegment}/*"
-
-  updateSubscription = client.subscribe channel, (message) ->
-    update = JSON.parse(message)
-    $.each update, (id, attributes) ->
-      self.get(id).set(attributes)

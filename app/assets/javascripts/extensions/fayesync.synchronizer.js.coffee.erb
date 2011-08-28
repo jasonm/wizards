@@ -1,0 +1,21 @@
+window.FayeSync = {}
+
+class FayeSync.Synchronizer
+  constructor: (collection, options) ->
+    @collection = collection
+    @client  = new Faye.Client('<%= FAYE_SERVER %>/faye')
+    @channel = options.channel
+
+    @subscribe()
+
+  subscribe: =>
+    @client.subscribe "/sync/#{@channel}", @receive
+
+  receive: (message) =>
+    $.each message, (event, eventArguments) =>
+      @[event](eventArguments)
+
+  update: (params) =>
+    $.each params, (id, attributes) =>
+      model = @collection.get(id)
+      model.set(attributes)
