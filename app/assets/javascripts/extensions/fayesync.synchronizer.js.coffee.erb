@@ -19,3 +19,13 @@ class FayeSync.Synchronizer
     $.each params, (id, attributes) =>
       model = @collection.get(id)
       model.set(attributes)
+
+  create: (params) =>
+    $.each params, (id, attributes) =>
+      model = new @collection.model(attributes)
+      @collection.add(model)
+
+  destroy: (params) =>
+    $.each params, (id, attributes) =>
+      model = @collection.get(id)
+      @collection.remove(model)

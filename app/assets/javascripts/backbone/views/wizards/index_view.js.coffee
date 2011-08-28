@@ -8,6 +8,8 @@ class Wizards.Views.Wizards.IndexView extends Backbone.View
     
     @options.wizards.bind('reset', this.addAll);
     @options.wizards.bind('change', this.render);
+    @options.wizards.bind('remove', this.render);
+    @options.wizards.bind('add', this.render);
    
   addAll: () ->
     @options.wizards.each(this.addOne)

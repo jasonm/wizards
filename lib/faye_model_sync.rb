@@ -7,6 +7,14 @@ module FayeModelSync
       Event.new(faye_address, model, :update).broadcast
     end
 
+    def after_create(model)
+      Event.new(faye_address, model, :create).broadcast
+    end
+
+    def after_destroy(model)
+      Event.new(faye_address, model, :destroy).broadcast
+    end
+
     private
 
     def faye_address
