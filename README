@@ -7,3 +7,8 @@ The application is scaffolded using https://github.com/codebrew/backbone-rails
 
 It uses Faye http://faye.jcoglan.com/ to broadcast model updates to clients.
 This notification is very early: it only notifies of update.
+
+=== Running in development
+
+You'll need to run a Faye server.  See Procfile for the command, or use
+Heroku's foreman gem: http://devcenter.heroku.com/articles/procfile
