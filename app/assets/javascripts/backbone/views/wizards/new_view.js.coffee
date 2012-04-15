@@ -5,33 +5,34 @@ class Wizards.Views.Wizards.NewView extends Backbone.View
   
   events:
     "submit #new-wizard": "save"
-    
-  constructor: (options) ->
-    super(options)
-    @options.model = new @options.collection.model()
 
-    @options.model.bind("change:errors", () =>
-      this.render()
-    )
-    
+  initialize: ->
+    @model = new @collection.model()
+    @model.on("change", @render) #change:errors
+
   save: (e) ->
     e.preventDefault()
     e.stopPropagation()
       
-    @options.model.unset("errors")
+    @model.unset("errors")
     
-    @options.collection.create(@options.model.toJSON(), 
+    @collection.create(@model.toJSON(),
       success: (model) =>
-        @options.model = model
-        window.location.hash = "/#{@options.model.id}"
+        @model = model
+        Backbone.history.navigate("/#{@model.get('id')}", true)
+        #window.location.hash = "/#{@model.id}"
         
-      error: (model, jqXHR) =>
-        @options.model.set({errors: $.parseJSON(jqXHR.responseText)})
+      error: @handleError
     )
     
-  render: ->
-    $(this.el).html(this.template(@options.model.toJSON() ))
-    
-    this.$("form").backboneLink(@options.model)
+  render: =>
+    $(@el).html(@template(@model.toJSON()))
+    @$("form").backboneLink(@model)
     
     return this
+
+  handleError: (wizard, response) ->
+    if response.status == 422
+      errors = $.parseJSON(response.responseText).errors
+      ## will @model even be set?
+      @model.set({errors: $.parseJSON(jqXHR.responseText)})
