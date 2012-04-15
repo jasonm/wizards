@@ -1,6 +1,19 @@
 <h1>New wizard</h1>
 
 <form id="new-wizard" name="wizard">
+  <% if(typeof(errors) != "undefined") { %>
+  <div>
+    errors:
+    <ul>
+    <% for(var field in errors) {
+      var message = errors[field];
+    %>
+      <li><%= field%>: <%= message%></li>
+    <% } %>
+    </ul>
+  </div>
+  <% } %>
+  </div>
   <div class="field">
     <label for="name"> name:</label>
     <input type="text" name="name" id="name" value=<%= name %> >

@@ -2,7 +2,8 @@
 
 <script type="text/javascript">
   $(function() {
-    window.router = new Wizards.Routers.WizardsRouter({wizards: <%= @wizards.to_json.html_safe -%>});
+    window.client = new Faye.Client('<%= BackboneSync::Rails::Faye.root_address %>/faye')
+    window.router = new Wizards.Routers.WizardsRouter({wizards: <%= @wizards.to_json.html_safe -%>, client: client});
     Backbone.history.start();
   });
 </script>

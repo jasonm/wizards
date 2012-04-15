@@ -10,15 +10,15 @@ class Wizards.Views.Wizards.EditView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
     
-    @options.model.save(null,
+    @model.save(null,
       success:(model) =>
-        @options.model = model
-        window.location.hash = "/#{@options.model.id}"
+        @model = model
+        Backbone.history.navigate("/#{@model.get('id')}", true)
+        #window.location.hash = "/#{@model.get('id')}"
     )
     
-  render: ->
-    $(this.el).html(this.template(@options.model.toJSON() ))
+  render: =>
+    $(@el).html(@template(@model.toJSON() ))
+    @$("form").backboneLink(@model) ##what is this?
     
-    this.$("form").backboneLink(@options.model)
-    
-    return this
+    this
