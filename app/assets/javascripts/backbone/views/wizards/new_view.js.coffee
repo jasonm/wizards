@@ -8,7 +8,7 @@ class Wizards.Views.Wizards.NewView extends Backbone.View
 
   initialize: ->
     @model = new @collection.model()
-    @model.on("change", @render) #change:errors
+    @model.on("change errors", @render) #change:errors
 
   save: (e) ->
     e.preventDefault()
@@ -31,8 +31,8 @@ class Wizards.Views.Wizards.NewView extends Backbone.View
     
     return this
 
-  handleError: (wizard, response) ->
+  handleError: (wizard, response) =>
     if response.status == 422
       errors = $.parseJSON(response.responseText).errors
       ## will @model even be set?
-      @model.set({errors: $.parseJSON(jqXHR.responseText)})
+      @model.set(errors: errors)
